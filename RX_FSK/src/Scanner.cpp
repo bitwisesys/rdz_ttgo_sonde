@@ -109,14 +109,14 @@ void Scanner::plotResult()
 			uint16_t value = scanconfig.VSCALE * PLOT_SCALE(scandisp[i]);
 			uint16_t barpos = scanconfig.PLOT_H8 * 8 - value;
 			// blue line from top to value
-			gfx->drawFastVLine(i, 8*yofs, barpos, BLUE);
-			gfx->drawFastVLine(i, 8*yofs+barpos, value, GREEN);
+			gfx->drawFastVLine(i, 8*yofs, barpos, RGB565_BLUE);
+			gfx->drawFastVLine(i, 8*yofs+barpos, value, RGB565_GREEN);
 
 			// draw tick marks if needed
 			if( (i%scanconfig.TICK1)==0 ) { 
-				gfx->drawFastVLine(i, 8*yofs, 3, GREEN);
+				gfx->drawFastVLine(i, 8*yofs, 3, RGB565_GREEN);
 			} else if( (i%scanconfig.TICK2)==0 ) {
-				gfx->drawFastVLine(i, 8*yofs, 1, GREEN);
+				gfx->drawFastVLine(i, 8*yofs, 1, RGB565_GREEN);
 			}
 		}
         } else {

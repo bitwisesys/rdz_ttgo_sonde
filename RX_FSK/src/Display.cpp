@@ -540,7 +540,7 @@ void ILI9225Display::begin() {
 	else
 		tft = new Arduino_ILI9225(bus, sonde.config.oled_rst);
 	tft->begin(sonde.config.tft_spifreq);
-	tft->fillScreen(BLACK);
+	tft->fillScreen(RGB565_BLACK);
 	tft->setRotation(sonde.config.tft_orient);
 	tft->setTextWrap(false);
 	if(sonde.config.type == TYPE_M5_CORE2||sonde.config.type==TYPE_M5_CORE) 
@@ -550,7 +550,7 @@ void ILI9225Display::begin() {
 
 void ILI9225Display::clear() {
 	SPI_MUTEX_LOCK();
-	tft->fillScreen(BLACK);
+	tft->fillScreen(RGB565_BLACK);
 	SPI_MUTEX_UNLOCK();
 }
 
@@ -718,7 +718,7 @@ void ILI9225Display::drawTile(uint16_t x, uint16_t y, uint8_t cnt, uint8_t *tile
 	for(i=0; i<cnt*8; i++) {
 		uint8_t v = tile_ptr[i];
 		for(j=0; j<8; j++) {
-			tft->writePixel(8*x+i, 8*y+j, (v&0x01) ? GREEN:BLUE);
+			tft->writePixel(8*x+i, 8*y+j, (v&0x01) ? RGB565_GREEN: RGB565_BLUE);
 			v >>= 1;
 		}
 	}
